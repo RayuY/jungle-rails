@@ -5,8 +5,9 @@ class SessionsController < ApplicationController
 
   def create
     params[:email].downcase!
+   
     # success logic, log them in
-    if user = User.authenticate_with_credentials[params[:email], params[:password]]
+    if user = User.authenticate_with_credentials(params[:email], params[:password])
       session[:user_id] = user.id
       redirect_to '/'
     else
